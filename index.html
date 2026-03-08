@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dipali Kshirsagar — Cloud Help for Everyone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #e8f4fd;
+  --deep: #0b1f3a;
+  --teal: #0ea5e9;
+  --teal-dark: #0369a1;
+  --teal-light: #bae6fd;
+  --orange: #f97316;
+  --orange-light: #fed7aa;
+  --green: #10b981;
+  --ink: #1e293b;
+  --body: #475569;
+  --soft: #94a3b8;
+  --border: #e2e8f0;
+  --white: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--sky); color: var(--ink); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(232,244,253,0.88); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(14,165,233,0.15);
+  padding: 0 60px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; font-family: 'Fira Code', monospace; font-size: 14px; font-weight: 500; color: var(--deep); }
+.nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); animation: breathe 2s ease-in-out infinite; }
+@keyframes breathe { 0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(16,185,129,.4)} 50%{transform:scale(1.2);box-shadow:0 0 0 6px rgba(16,185,129,0)} }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--body); text-decoration: none; transition: color .2s; position: relative; padding-bottom: 2px; }
+.nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--teal); transition:width .3s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { padding: 10px 24px; background: var(--deep) !important; color: white !important; border-radius: 100px; font-size: 13px !important; font-weight: 600 !important; }
+.nav-cta::after { display:none !important; }
+.nav-cta:hover { background: var(--teal-dark) !important; color: white !important; }
+
+/* HERO */
+.hero-wrap { max-width: 1280px; margin: 0 auto; position: relative; }
+.hero-wrap::before { content:''; position:absolute; top:80px; right:-100px; width:700px; height:700px; background:radial-gradient(ellipse, rgba(14,165,233,.1) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+.hero { min-height: 100vh; padding: 120px 60px 80px; display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: var(--teal-light); color: var(--teal-dark); padding: 8px 18px; border-radius: 100px; font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 500; letter-spacing: .5px; margin-bottom: 28px; }
+.blink { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: breathe 1.5s ease-in-out infinite; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(50px, 6vw, 78px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; color: var(--deep); margin-bottom: 12px; }
+.hero h1 em { font-style: italic; color: var(--teal); position: relative; }
+.hero h1 em::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--teal), var(--orange)); border-radius:2px; }
+.hero-sub { font-size: clamp(17px, 2.2vw, 21px); color: var(--body); font-weight: 300; line-height: 1.55; margin-bottom: 32px; max-width: 520px; }
+.hero-sub strong { font-weight: 600; color: var(--ink); }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+.chip { display: flex; align-items: center; gap: 8px; padding: 9px 16px; background: white; border: 1px solid var(--border); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: all .2s; }
+.chip:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(14,165,233,.15); }
+.chip span { font-size: 17px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-main { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); color: white; border-radius: 100px; font-size: 16px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 24px rgba(14,165,233,.35); transition: all .3s; }
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(14,165,233,.4); }
+.btn-sec { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; background: white; color: var(--ink); border-radius: 100px; font-size: 15px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); transition: all .3s; }
+.btn-sec:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-3px); }
+
+/* HERO CARD */
+.hero-card { background: white; border-radius: 28px; padding: 38px 34px; box-shadow: 0 32px 80px rgba(11,31,58,.12), 0 0 0 1px rgba(14,165,233,.1); position: relative; overflow: hidden; animation: cfloat 5s ease-in-out infinite; }
+@keyframes cfloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.hero-card::before { content:'☁'; position:absolute; top:-20px; right:-10px; font-size:100px; opacity:.05; pointer-events:none; }
+.card-top { display:flex; align-items:center; gap:16px; margin-bottom:24px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+.card-av { width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, var(--teal), #0369a1); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:white; flex-shrink:0; }
+.card-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--deep); }
+.card-role { font-size:12px; color:var(--soft); margin-top:2px; font-family:'Fira Code',monospace; }
+.card-cert { display:flex; align-items:center; gap:12px; padding:13px 15px; background:linear-gradient(135deg,#fef3c7,#fde68a); border-radius:14px; margin-bottom:16px; }
+.cert-icon { font-size:22px; }
+.cert-name { font-size:13px; font-weight:600; color:#92400e; }
+.cert-sub { font-size:11px; color:#b45309; margin-top:1px; }
+.card-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+.stat-box { background:var(--sky); border-radius:12px; padding:13px; text-align:center; }
+.stat-n { font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:var(--teal-dark); }
+.stat-l { font-size:11px; color:var(--soft); margin-top:2px; }
+.card-avail { display:flex; align-items:center; gap:10px; padding:13px 15px; background:#dcfce7; border-radius:12px; }
+.avail-dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:breathe 2s infinite; }
+.avail-txt { font-size:13px; font-weight:600; color:#166534; }
+
+/* STRIP */
+.strip-wrap { background:var(--deep); padding:22px 0; overflow:hidden; }
+.strip { display:flex; gap:56px; animation:scroll 22s linear infinite; width:max-content; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.strip-i { display:flex; align-items:center; gap:10px; white-space:nowrap; font-family:'Fira Code',monospace; font-size:13px; color:rgba(255,255,255,.55); }
+.strip-i .dot { color:var(--teal); }
+
+/* SECTIONS */
+.sec { padding: 100px 60px; max-width: 1280px; margin: 0 auto; }
+.sec-bg-white { background: white; }
+.eyebrow { font-family:'Fira Code',monospace; font-size:12px; font-weight:500; color:var(--teal); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+.sec-title { font-family:'Playfair Display',serif; font-size:clamp(34px,4.5vw,52px); font-weight:900; color:var(--deep); letter-spacing:-.5px; line-height:1.1; }
+.sec-title .tl { color:var(--teal); font-style:italic; }
+.sec-sub { font-size:17px; color:var(--body); font-weight:300; margin-top:14px; max-width:540px; line-height:1.6; }
+.sec-hd { margin-bottom:56px; }
+
+/* SERVICES */
+.svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.svc-card { padding:34px 26px; border-radius:20px; border:1.5px solid var(--border); background:var(--sky); transition:all .3s; position:relative; overflow:hidden; }
+.svc-card:hover { border-color:var(--teal); background:white; transform:translateY(-6px); box-shadow:0 20px 48px rgba(14,165,233,.13); }
+.svc-emoji { font-size:38px; margin-bottom:18px; display:block; }
+.svc-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--deep); margin-bottom:10px; }
+.svc-desc { font-size:14px; color:var(--body); line-height:1.65; }
+.svc-tag { display:inline-block; margin-top:16px; padding:5px 13px; background:var(--teal-light); color:var(--teal-dark); border-radius:100px; font-size:11px; font-weight:600; font-family:'Fira Code',monospace; }
+.svc-tag.or { background:var(--orange-light); color:#c2410c; }
+.svc-tag.gr { background:#d1fae5; color:#065f46; }
+
+/* PROJECTS */
+.proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.proj-card { background:white; border-radius:20px; padding:30px 26px; border:1.5px solid var(--border); transition:all .3s; }
+.proj-card:hover { border-color:var(--teal); box-shadow:0 16px 40px rgba(14,165,233,.1); transform:translateY(-4px); }
+.proj-date { font-family:'Fira Code',monospace; font-size:11px; color:var(--soft); letter-spacing:1px; margin-bottom:12px; }
+.proj-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--deep); margin-bottom:10px; line-height:1.3; }
+.proj-desc { font-size:14px; color:var(--body); line-height:1.65; margin-bottom:18px; }
+.proj-win { display:flex; align-items:center; gap:8px; padding:9px 13px; background:#d1fae5; border-radius:10px; font-size:13px; font-weight:600; color:#065f46; margin-bottom:14px; }
+.proj-pills { display:flex; flex-wrap:wrap; gap:7px; }
+.pill { padding:4px 11px; background:var(--sky); border-radius:100px; font-size:11px; font-weight:500; color:var(--body); border:1px solid var(--border); font-family:'Fira Code',monospace; }
+
+/* CONTACT */
+.contact-bg { background: var(--deep); }
+.contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.contact-left .sec-title { color:white; }
+.contact-left .sec-sub { color:rgba(255,255,255,.6); }
+.contact-left .eyebrow { color:var(--teal-light); }
+.reach-list { margin-top:36px; display:flex; flex-direction:column; gap:12px; }
+.reach-item { display:flex; align-items:center; gap:14px; padding:15px 18px; background:rgba(255,255,255,.07); border-radius:14px; border:1px solid rgba(255,255,255,.1); text-decoration:none; transition:all .3s; }
+.reach-item:hover { background:rgba(14,165,233,.15); border-color:rgba(14,165,233,.4); transform:translateX(6px); }
+.reach-icon { font-size:20px; flex-shrink:0; }
+.reach-label { font-size:11px; color:rgba(255,255,255,.4); font-family:'Fira Code',monospace; letter-spacing:1px; }
+.reach-val { font-size:14px; font-weight:500; color:white; margin-top:1px; }
+
+/* FORM CARD */
+.form-card { background:white; border-radius:24px; padding:42px 38px; box-shadow:0 40px 80px rgba(0,0,0,.28); }
+.form-card h3 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--deep); margin-bottom:6px; }
+.form-card p { font-size:14px; color:var(--body); margin-bottom:26px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.fg { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.fg label { font-size:13px; font-weight:600; color:var(--ink); }
+.fg input,.fg textarea,.fg select { padding:12px 15px; background:var(--sky); border:1.5px solid var(--border); border-radius:12px; font-family:'Outfit',sans-serif; font-size:14px; color:var(--ink); outline:none; transition:border-color .2s,box-shadow .2s; resize:none; }
+.fg input:focus,.fg textarea:focus,.fg select:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(14,165,233,.12); background:white; }
+.fg input::placeholder,.fg textarea::placeholder { color:var(--soft); }
+.submit-btn { width:100%; padding:15px; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); color:white; border:none; border-radius:14px; font-family:'Outfit',sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition:all .3s; margin-top:6px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.submit-btn:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(14,165,233,.4); }
+.success-msg { display:none; text-align:center; padding:18px; background:#d1fae5; border-radius:14px; margin-top:14px; font-size:14px; font-weight:600; color:#065f46; }
+.success-msg.show { display:block; animation:popIn .4s ease; }
+@keyframes popIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
+
+/* FOOTER */
+footer { background:#060f1e; padding:30px 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+.footer-brand { font-family:'Fira Code',monospace; font-size:13px; color:rgba(255,255,255,.45); }
+.footer-brand strong { color:var(--teal); }
+.footer-links { display:flex; gap:22px; }
+.footer-links a { font-size:13px; color:rgba(255,255,255,.4); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:var(--teal-light); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(26px); transition:all .7s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:900px){
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; padding:100px 22px 60px; gap:36px; }
+  .sec { padding:64px 22px; }
+  .svc-grid,.proj-grid { grid-template-columns:1fr; }
+  .contact-layout { grid-template-columns:1fr; gap:36px; }
+  .form-row { grid-template-columns:1fr; }
+  footer { padding:22px; flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><div class="nav-dot"></div>dipali.cloud</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Free Help →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow"><div class="blink"></div> Open to help you — completely free!</div>
+      <h1>Your Cloud<br><em>Helper</em> is<br>Here 🌤️</h1>
+      <p class="hero-sub">I'm <strong>Dipali Kshirsagar</strong>, an <strong>AWS Certified Cloud Engineer</strong> from Ahmednagar. I help people & businesses deploy websites, set up automation, and move to the cloud — <strong>for free</strong>.</p>
+      <div class="hero-chips">
+        <div class="chip"><span>☁️</span> Deploy your website</div>
+        <div class="chip"><span>⚙️</span> Setup CI/CD</div>
+        <div class="chip"><span>🔐</span> Cloud security</div>
+        <div class="chip"><span>🐳</span> Docker &amp; K8s</div>
+        <div class="chip"><span>📊</span> Monitoring &amp; alerts</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-main">☁️ Get My Help — It's Free!</a>
+        <a href="#projects" class="btn-sec">See My Work ↓</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-top">
+        <div class="card-av">DK</div>
+        <div><div class="card-name">Dipali Kshirsagar</div><div class="card-role">cloud &amp; devops engineer</div></div>
+      </div>
+      <div class="card-cert">
+        <div class="cert-icon">🏅</div>
+        <div><div class="cert-name">AWS Certified Cloud Practitioner</div><div class="cert-sub">Amazon Web Services — Official Certification</div></div>
+      </div>
+      <div class="card-stats">
+        <div class="stat-box"><div class="stat-n">3+</div><div class="stat-l">Live Projects</div></div>
+        <div class="stat-box"><div class="stat-n">15+</div><div class="stat-l">AWS Services</div></div>
+        <div class="stat-box"><div class="stat-n">4</div><div class="stat-l">Certifications</div></div>
+        <div class="stat-box"><div class="stat-n">FREE</div><div class="stat-l">I help you</div></div>
+      </div>
+      <div class="card-avail"><div class="avail-dot"></div><div class="avail-txt">✓ Available now — message me!</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCROLLING TECH STRIP -->
+<div class="strip-wrap">
+  <div class="strip">
+    <div class="strip-i"><span class="dot">▸</span> AWS EC2</div>
+    <div class="strip-i"><span class="dot">▸</span> S3 Hosting</div>
+    <div class="strip-i"><span class="dot">▸</span> Jenkins CI/CD</div>
+    <div class="strip-i"><span class="dot">▸</span> Docker &amp; Kubernetes</div>
+    <div class="strip-i"><span class="dot">▸</span> CloudWatch</div>
+    <div class="strip-i"><span class="dot">▸</span> Lambda Serverless</div>
+    <div class="strip-i"><span class="dot">▸</span> GitHub Actions</div>
+    <div class="strip-i"><span class="dot">▸</span> Auto Scaling</div>
+    <div class="strip-i"><span class="dot">▸</span> RDS Databases</div>
+    <div class="strip-i"><span class="dot">▸</span> VPC &amp; Security</div>
+    <div class="strip-i"><span class="dot">▸</span> Load Balancing</div>
+    <div class="strip-i"><span class="dot">▸</span> EventBridge</div>
+    <div class="strip-i"><span class="dot">▸</span> AWS EC2</div>
+    <div class="strip-i"><span class="dot">▸</span> S3 Hosting</div>
+    <div class="strip-i"><span class="dot">▸</span> Jenkins CI/CD</div>
+    <div class="strip-i"><span class="dot">▸</span> Docker &amp; Kubernetes</div>
+    <div class="strip-i"><span class="dot">▸</span> CloudWatch</div>
+    <div class="strip-i"><span class="dot">▸</span> Lambda Serverless</div>
+    <div class="strip-i"><span class="dot">▸</span> GitHub Actions</div>
+    <div class="strip-i"><span class="dot">▸</span> Auto Scaling</div>
+    <div class="strip-i"><span class="dot">▸</span> RDS Databases</div>
+    <div class="strip-i"><span class="dot">▸</span> VPC &amp; Security</div>
+    <div class="strip-i"><span class="dot">▸</span> Load Balancing</div>
+    <div class="strip-i"><span class="dot">▸</span> EventBridge</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="sec-bg-white" id="services">
+  <div class="sec">
+    <div class="sec-hd reveal">
+      <div class="eyebrow">// what i offer</div>
+      <h2 class="sec-title">I Will Help You With <span class="tl">This</span></h2>
+      <p class="sec-sub">Whether you're a student, startup, or small business — I'll set up your cloud for free. Just message me!</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal"><span class="svc-emoji">🌐</span><div class="svc-title">Deploy Your Website</div><p class="svc-desc">I'll host your website on AWS S3, EC2 or Amplify with a custom domain and HTTPS. Fast, secure and live in hours — not days.</p><span class="svc-tag">Most Requested</span></div>
+      <div class="svc-card reveal"><span class="svc-emoji">⚙️</span><div class="svc-title">CI/CD Pipeline Setup</div><p class="svc-desc">Push your code to GitHub → it automatically deploys. I'll build your Jenkins or GitHub Actions pipeline so you never upload manually again.</p><span class="svc-tag or">DevOps</span></div>
+      <div class="svc-card reveal"><span class="svc-emoji">🐳</span><div class="svc-title">Docker &amp; Kubernetes</div><p class="svc-desc">Containerize your app with Docker and orchestrate it with Kubernetes so it works on every machine and scales automatically.</p><span class="svc-tag">Containers</span></div>
+      <div class="svc-card reveal"><span class="svc-emoji">📊</span><div class="svc-title">Monitoring &amp; Alerts</div><p class="svc-desc">Set up CloudWatch dashboards + SNS notifications. Get an alert on your phone the moment something goes wrong — before your users notice.</p><span class="svc-tag gr">24/7 Visibility</span></div>
+      <div class="svc-card reveal"><span class="svc-emoji">🔐</span><div class="svc-title">Cloud Security (IAM)</div><p class="svc-desc">Configure AWS IAM roles, policies, and VPC security groups so your data and servers are protected from day one.</p><span class="svc-tag">Security</span></div>
+      <div class="svc-card reveal"><span class="svc-emoji">☁️</span><div class="svc-title">Cloud Consultation</div><p class="svc-desc">New to cloud? I'll explain everything in simple language and make a plan that fits your budget — even zero budget!</p><span class="svc-tag gr">Free Advice</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects">
+  <div class="sec">
+    <div class="sec-hd reveal">
+      <div class="eyebrow">// my projects</div>
+      <h2 class="sec-title">Real Cloud Projects I <span class="tl">Built</span></h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-date">SEP – OCT 2025</div>
+        <div class="proj-title">Zero-Downtime Web App Deployment</div>
+        <p class="proj-desc">High-availability architecture on AWS using Blue/Green deployment — users never see downtime during updates, even at peak traffic.</p>
+        <div class="proj-win">📈 Zero downtime achieved</div>
+        <div class="proj-pills"><span class="pill">EC2</span><span class="pill">RDS</span><span class="pill">ALB</span><span class="pill">Auto Scaling</span><span class="pill">CloudWatch</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-date">SEP 2025</div>
+        <div class="proj-title">Serverless Event-Driven Monitoring</div>
+        <p class="proj-desc">Automated infrastructure monitoring using Lambda, EventBridge &amp; SNS. Real-time alerts in 2 seconds. 90% reduction in ops costs.</p>
+        <div class="proj-win">💰 90% cost savings</div>
+        <div class="proj-pills"><span class="pill">Lambda</span><span class="pill">EventBridge</span><span class="pill">SNS</span><span class="pill">CloudWatch</span><span class="pill">IAM</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-date">JAN 2026</div>
+        <div class="proj-title">Jenkins CI/CD Automation Pipeline</div>
+        <p class="proj-desc">Full CI/CD pipeline with Jenkins, GitHub, Docker &amp; Nginx on EC2. Code commit → Docker build → live deployment, fully automated.</p>
+        <div class="proj-win">⚡ Instant auto-deploy</div>
+        <div class="proj-pills"><span class="pill">Jenkins</span><span class="pill">Docker</span><span class="pill">GitHub</span><span class="pill">Nginx</span><span class="pill">EC2</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bg" id="contact">
+  <div class="sec">
+    <div class="contact-layout">
+      <div class="contact-left reveal">
+        <div class="eyebrow">// reach out</div>
+        <h2 class="sec-title">Need Cloud Help?<br><span class="tl">Message Me!</span></h2>
+        <p class="sec-sub">Tell me what you need. Whether it's deploying a website, learning AWS, or setting up DevOps — I'm here. Always free for students!</p>
+        <div class="reach-list">
+          <a href="mailto:dipalikshirsagar1203@gmail.com" class="reach-item"><span class="reach-icon">📧</span><div><div class="reach-label">Email</div><div class="reach-val">dipalikshirsagar1203@gmail.com</div></div></a>
+          <a href="tel:+919637950089" class="reach-item"><span class="reach-icon">📱</span><div><div class="reach-label">Phone / WhatsApp</div><div class="reach-val">+91 96379 50089</div></div></a>
+          <a href="https://www.linkedin.com/in/dipali-kshirsagar-31755b2b1/" target="_blank" class="reach-item"><span class="reach-icon">💼</span><div><div class="reach-label">LinkedIn</div><div class="reach-val">Dipali Kshirsagar</div></div></a>
+          <a href="https://github.com/Dipalik1229" target="_blank" class="reach-item"><span class="reach-icon">🐙</span><div><div class="reach-label">GitHub</div><div class="reach-val">Dipalik1229</div></div></a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-card">
+          <h3>Send Me a Message ✉️</h3>
+          <p>Fill in below — your message goes directly to my email inbox!</p>
+          <div class="form-row">
+            <div class="fg"><label>Your Name *</label><input type="text" id="f-name" placeholder="e.g. Rahul Sharma"></div>
+            <div class="fg"><label>Your Email *</label><input type="email" id="f-email" placeholder="your@email.com"></div>
+          </div>
+          <div class="fg"><label>Phone / WhatsApp (optional)</label><input type="tel" id="f-phone" placeholder="+91 98765 43210"></div>
+          <div class="fg">
+            <label>What Do You Need Help With? *</label>
+            <select id="f-service">
+              <option value="">-- Choose a service --</option>
+              <option>Deploy my website on AWS</option>
+              <option>Setup CI/CD Pipeline</option>
+              <option>Docker &amp; Kubernetes help</option>
+              <option>Cloud Monitoring &amp; Alerts</option>
+              <option>Cloud Security (IAM/VPC)</option>
+              <option>General Cloud Consultation</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell Me More About Your Project *</label><textarea id="f-msg" rows="4" placeholder="e.g. I have a portfolio website and want to host it on AWS with a custom domain..."></textarea></div>
+          <button class="submit-btn" onclick="sendEmail()">☁️ Send Message to Dipali</button>
+          <div class="success-msg" id="successMsg">✅ Your email app is opening! Your message goes straight to Dipali's inbox. She'll reply within 24 hours!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><strong>Dipali Kshirsagar</strong> — AWS Certified Cloud &amp; DevOps Engineer · Ahmednagar, Maharashtra</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="mailto:dipalikshirsagar1203@gmail.com">Email Me</a>
+  </div>
+</footer>
+
+<script>
+function sendEmail() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const msg     = document.getElementById('f-msg').value.trim();
+
+  if (!name || !email || !service || !msg) {
+    alert('⚠️ Please fill in all required fields: Name, Email, Service, and Message.');
+    return;
+  }
+
+  const subject = encodeURIComponent(`Cloud Help Request from ${name} — ${service}`);
+  const body = encodeURIComponent(
+`Hello Dipali,
+
+My name is ${name} and I need your help with: ${service}
+
+📧 My Email: ${email}
+📱 My Phone/WhatsApp: ${phone || 'Not provided'}
+
+📝 My Project / What I Need:
+${msg}
+
+---
+Sent from your portfolio website dipali.cloud
+`);
+
+  window.location.href = `mailto:dipalikshirsagar1203@gmail.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('successMsg').classList.add('show');
+
+  setTimeout(() => {
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-phone').value = '';
+    document.getElementById('f-service').value = '';
+    document.getElementById('f-msg').value = '';
+  }, 2500);
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 85);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
